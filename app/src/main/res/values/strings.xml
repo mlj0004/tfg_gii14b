@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">GII_14b</string>
+    <string name="action_settings">Ajustes de perfil</string>
+    <string name="action_acerca">Acerca de...</string>
+    <string name="action_idioma">Idioma</string>
+
+    <string-array name="opciones">
+        <item>Registro de glucemias</item>
+        <item>Historial de glucemias</item>
+    </string-array>
+    <string name="main_registro">Registro de glucemias</string>
+    <string name="main_historial">Historial de glucemias</string>
+
+
+
+    <string name="tvnombre">Nombre</string>
+    <string name="tvperfil">Perfil del usuario</string>
+    <string name="tvedad">Edad</string>
+    <string name="h_nombre">Introduce aquí tu nombre</string>
+    <string name="h_edad">Introduce aquí tu edad</string>
+    <string name="tvestatura">Estatura</string>
+    <string name="tvpeso">Peso</string>
+    <string name="hestatura">Introduce tu estatura en cm</string>
+    <string name="hpeso">Introduce tu peso en kg</string>
+    <string name="tvmaxmin">Introduce los valores mín y máx de glucemia deseados</string>
+    <string name="h_min">mín.</string>
+    <string name="h_max">máx.</string>
+    <string name="tvinsulina">Insulina Basal</string>
+    <string name="cb_determir">Determir</string>
+    <string name="cb_glargina">Glargina</string>
+    <string name="tv_uds">Unidades de insulina</string>
+    <string name="bt_guardar">Guardar</string>
+    <string name="title_activity_menu_principal">MenuPrincipal</string>
+    <string name="bt_bolo">Calcular bolo</string>
+    <string name="title_activity_registro_glucemias">RegistroGlucemias</string>
+    <string name="tv_glucemia">Introduce el valor de glucemia</string>
+    <string name="h_vglucemia">Introduzca aquí su valor de glucemia</string>
+    <string name="title_activity_actividad_fisica">ActividadFisica</string>
+    <string name="tv_tipoejer">Selecciona el tipo de ejercicio:</string>
+    <string name="tv_intensidad">Selecciona la intensidad del ejercicio:</string>
+    <string name="bt_siguiente">Siguiente</string>
+</resources>
