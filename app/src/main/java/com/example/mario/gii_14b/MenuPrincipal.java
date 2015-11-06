@@ -58,9 +58,12 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void calcularBoloOnClick(View view){
+        Intent paso3 = new Intent(this,Carbohidratos.class);
         Intent paso1 = new Intent(this, RegistroGlucemias.class);
-        startActivity(paso1);
         Intent paso2 = new Intent(this, ActividadFisica.class);
+
+        startActivity(paso3);
         startActivity(paso2);
+        startActivity(paso1);
     }
 }

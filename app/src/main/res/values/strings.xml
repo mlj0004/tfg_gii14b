@@ -39,4 +39,12 @@
     <string name="tv_tipoejer">Selecciona el tipo de ejercicio:</string>
     <string name="tv_intensidad">Selecciona la intensidad del ejercicio:</string>
     <string name="bt_siguiente">Siguiente</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_carbohidratos">Carbohidratos</string>
+    <string name="tv_carbohidratos">Selecciona el tipo de comida de la ingesta</string>
+    <string name="tv_valorcarbo">Introuce la cantidad de la ingesta en gramos</string>
+    <string name="bt_finalizar">Finalizar</string>
+    <string name="title_activity_incidencias">Incidencias</string>
+    <string name="tv_incidencia">Selecciona la causa de la incidencia</string>
+    <string name="tv_observaciones">Anote aqui sus observaciones</string>
 </resources>

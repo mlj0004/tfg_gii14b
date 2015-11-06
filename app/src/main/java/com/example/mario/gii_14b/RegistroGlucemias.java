@@ -46,6 +46,8 @@ public class RegistroGlucemias extends AppCompatActivity {
 
     }
     public void guardarGlucemiaOnClick(View view){
+        Intent i = new Intent(this,Incidencias.class);
+        startActivity(i);
         super.onBackPressed();
     }
 
