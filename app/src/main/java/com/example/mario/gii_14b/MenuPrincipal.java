@@ -15,6 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.mario.persistencia.DataBaseHelper;
+
+
 public class MenuPrincipal extends AppCompatActivity {
 
     String[] opciones = {"Registro de glucemias", "Historial de glucemias"};
@@ -23,6 +26,9 @@ public class MenuPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        DataBaseHelper helper = new DataBaseHelper(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
