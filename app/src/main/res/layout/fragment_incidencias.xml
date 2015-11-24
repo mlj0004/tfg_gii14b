@@ -20,7 +20,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
+        android:id="@+id/sp_incidencias"
         android:layout_below="@+id/tv_incidencia"
         android:layout_centerHorizontal="true" />
 
@@ -29,9 +29,10 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_observaciones"
         android:id="@+id/tv_observaciones"
-        android:layout_below="@+id/spinner2"
+        android:layout_below="@+id/sp_incidencias"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/background_floating_material_dark" />
+        android:textColor="@color/background_floating_material_dark"
+        android:layout_marginTop="50dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -52,5 +53,6 @@
         android:layout_centerHorizontal="true"
         android:background="#00c4eb"
         android:textColor="#ffffff"
-        android:onClick="incidenciasOnClick" />
+        android:onClick="incidenciasOnClick"
+        android:layout_marginTop="50dp" />
 </RelativeLayout>

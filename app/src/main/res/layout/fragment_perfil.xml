@@ -25,12 +25,11 @@
         android:id="@+id/et_nombre"
         android:textColor="#010101"
         android:background="#ffffff"
-        android:hint="@string/h_nombre"
         android:layout_alignTop="@+id/tv_nombre"
-        android:layout_alignLeft="@+id/et_estatura"
-        android:layout_alignStart="@+id/et_estatura"
+        android:layout_toRightOf="@+id/tv_nombre"
         android:layout_alignRight="@+id/et_estatura"
-        android:layout_alignEnd="@+id/et_estatura" />
+        android:layout_alignEnd="@+id/et_estatura"
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,12 +59,11 @@
         android:ems="10"
         android:id="@+id/et_edad"
         android:background="#ffffff"
-        android:hint="@string/h_edad"
         android:layout_alignTop="@+id/textView2"
-        android:layout_alignLeft="@+id/et_nombre"
-        android:layout_alignStart="@+id/et_nombre"
+        android:layout_toRightOf="@+id/textView2"
         android:layout_alignRight="@+id/et_estatura"
-        android:layout_alignEnd="@+id/et_estatura" />
+        android:layout_alignEnd="@+id/et_estatura"
+        android:layout_marginLeft="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,12 +83,11 @@
         android:ems="10"
         android:id="@+id/et_estatura"
         android:background="#ffffff"
-        android:hint="@string/hestatura"
         android:layout_alignTop="@+id/tvestatura"
-        android:layout_alignLeft="@+id/cb_determir"
-        android:layout_alignStart="@+id/cb_determir"
+        android:layout_toRightOf="@+id/tvestatura"
         android:layout_alignRight="@+id/linearLayout"
-        android:layout_alignEnd="@+id/linearLayout" />
+        android:layout_alignEnd="@+id/linearLayout"
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -110,12 +107,11 @@
         android:ems="10"
         android:id="@+id/et_peso"
         android:background="#ffffff"
-        android:hint="@string/hpeso"
         android:layout_alignTop="@+id/tvpeso"
-        android:layout_alignLeft="@+id/et_estatura"
-        android:layout_alignStart="@+id/et_estatura"
-        android:layout_alignRight="@+id/linearLayout"
-        android:layout_alignEnd="@+id/linearLayout" />
+        android:layout_toRightOf="@+id/tvpeso"
+        android:layout_alignRight="@+id/et_estatura"
+        android:layout_alignEnd="@+id/et_estatura"
+        android:layout_marginLeft="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -147,8 +143,7 @@
             android:id="@+id/et_min"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:layout_marginRight="10dp"
-            android:hint="@string/h_min" />
+            android:layout_marginRight="10dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -158,8 +153,7 @@
             android:id="@+id/et_max"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:layout_marginLeft="10dp"
-            android:hint="@string/h_max" />
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
     <TextView
@@ -179,8 +173,8 @@
         android:id="@+id/cb_determir"
         android:checked="false"
         android:layout_below="@+id/tvinsulina"
-        android:layout_toRightOf="@+id/tvestatura"
-        android:layout_toEndOf="@+id/tvestatura" />
+        android:layout_toLeftOf="@+id/bt_guardar"
+        android:layout_toStartOf="@+id/bt_guardar" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -188,7 +182,7 @@
         android:text="@string/cb_glargina"
         android:id="@+id/cb_glargina"
         android:checked="false"
-        android:layout_alignTop="@+id/cb_determir"
+        android:layout_below="@+id/tvinsulina"
         android:layout_toRightOf="@+id/tvinsulina"
         android:layout_toEndOf="@+id/tvinsulina" />
 
@@ -206,10 +200,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
-        android:layout_alignRight="@+id/cb_glargina"
-        android:layout_alignEnd="@+id/cb_glargina"
-        android:layout_alignLeft="@+id/cb_determir"
-        android:layout_alignStart="@+id/cb_determir">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout2">
 
         <EditText
             android:layout_width="wrap_content"
@@ -237,11 +229,13 @@
         android:layout_height="wrap_content"
         android:text="@string/bt_guardar"
         android:id="@+id/bt_guardar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:enabled="true"
         android:focusable="false"
         android:background="#00aacc"
-        android:onClick="guardarperfilOnClick" />
+        android:onClick="guardarperfilOnClick"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_toLeftOf="@+id/cb_glargina"
+        android:layout_toStartOf="@+id/cb_glargina"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

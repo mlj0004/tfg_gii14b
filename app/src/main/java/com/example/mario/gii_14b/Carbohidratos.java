@@ -21,7 +21,7 @@ public class Carbohidratos extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listaComida = (Spinner) findViewById(R.id.sp_tipoejer);
+        listaComida = (Spinner) findViewById(R.id.sp_comidas);
         ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,tiposComida);
         listaComida.setAdapter(adpTipos);
 

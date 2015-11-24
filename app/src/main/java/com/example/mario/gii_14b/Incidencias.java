@@ -21,7 +21,7 @@ public class Incidencias extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listaIncidencias = (Spinner) findViewById(R.id.sp_tipoejer);
+        listaIncidencias = (Spinner) findViewById(R.id.sp_incidencias);
         ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,tiposIncidencias);
         listaIncidencias.setAdapter(adpTipos);
 

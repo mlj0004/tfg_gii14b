@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:text="@string/bt_bolo"
         android:id="@+id/bt_bolo"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="98dp"
         android:background="@drawable/btn_circle"
         android:textColor="#ffffff"
-        android:onClick="calcularBoloOnClick" />
+        android:onClick="calcularBoloOnClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp" />
 </RelativeLayout>

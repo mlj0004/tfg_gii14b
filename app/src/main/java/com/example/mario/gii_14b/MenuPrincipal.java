@@ -1,6 +1,7 @@
 package com.example.mario.gii_14b;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,7 +33,7 @@ public class MenuPrincipal extends AppCompatActivity {
         listaMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0){
+                if (position == 0) {
                     Intent i = new Intent(getApplicationContext(), RegistroGlucemias.class);
                     startActivity(i);
                 }
@@ -53,6 +54,13 @@ public class MenuPrincipal extends AppCompatActivity {
         int id = item.getItemId();
         if(id== R.id.action_acerca){
             Toast.makeText(this, "Mario López Jiménez. Universidad de Burgos. 2015", Toast.LENGTH_LONG).show();
+        }else if(id==R.id.action_settings){
+            //SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+            //SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
+            //editorPreferencias.putBoolean("ajustePerfil",false);
+            Intent i = new Intent(this,Perfil.class);
+            startActivity(i);
+
         }
         return super.onOptionsItemSelected(item);
     }

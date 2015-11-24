@@ -21,7 +21,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/sp_comidas"
         android:layout_below="@+id/tv_carbohidratos"
         android:layout_centerHorizontal="true" />
 
@@ -30,8 +30,9 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_valorcarbo"
         android:id="@+id/tv_valorcarbo"
-        android:layout_below="@+id/spinner"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/sp_comidas"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -51,6 +52,7 @@
         android:layout_centerHorizontal="true"
         android:background="#00c4eb"
         android:textColor="#ffffff"
-        android:onClick="finalizarOnClick" />
+        android:onClick="finalizarOnClick"
+        android:layout_marginTop="50dp" />
 
 </RelativeLayout>
