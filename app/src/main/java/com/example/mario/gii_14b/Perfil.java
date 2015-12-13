@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class Perfil extends AppCompatActivity {
@@ -36,8 +38,8 @@ public class Perfil extends AppCompatActivity {
         EditText minEt=(EditText) findViewById(R.id.et_min);
         EditText uds1Et=(EditText) findViewById(R.id.et_uds1);
         EditText uds2Et=(EditText) findViewById(R.id.et_uds2);
-        CheckBox determirCheck = (CheckBox) findViewById(R.id.cb_determir);
-        CheckBox glarginaCheck = (CheckBox) findViewById(R.id.cb_glargina);
+        RadioButton determirCheck = (RadioButton) findViewById(R.id.rd_determir);
+        RadioButton glarginaCheck = (RadioButton) findViewById(R.id.rd_Glargina);
 
         nombreEt.setText(misPreferencias.getString("nombre",""));
         edadEt.setText(misPreferencias.getString("edad",""));
@@ -56,6 +58,7 @@ public class Perfil extends AppCompatActivity {
         SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
         SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
 
+
         EditText nombreEt = (EditText) findViewById(R.id.et_nombre);
         EditText edadEt=(EditText) findViewById(R.id.et_edad);
         EditText estaturaEt=(EditText) findViewById(R.id.et_estatura);
@@ -64,8 +67,9 @@ public class Perfil extends AppCompatActivity {
         EditText minEt=(EditText) findViewById(R.id.et_min);
         EditText uds1Et=(EditText) findViewById(R.id.et_uds1);
         EditText uds2Et=(EditText) findViewById(R.id.et_uds2);
-        CheckBox determirCheck = (CheckBox) findViewById(R.id.cb_determir);
-        CheckBox glarginaCheck = (CheckBox) findViewById(R.id.cb_glargina);
+        RadioButton determirCheck = (RadioButton) findViewById(R.id.rd_determir);
+        RadioButton glarginaCheck = (RadioButton) findViewById(R.id.rd_Glargina);
+
 
         String nombre = nombreEt.getText().toString();
         String edad = edadEt.getText().toString();
@@ -78,7 +82,7 @@ public class Perfil extends AppCompatActivity {
         Boolean determir = determirCheck.isChecked();
         Boolean glargina = glarginaCheck.isChecked();
 
-        editorPreferencias.putBoolean("primeraEjecucion",true);
+        editorPreferencias.putBoolean("primeraEjecucion", true);
         editorPreferencias.putString("nombre", nombre);
         editorPreferencias.putString("edad", edad);
         editorPreferencias.putString("estatura", estatura);
@@ -89,6 +93,8 @@ public class Perfil extends AppCompatActivity {
         editorPreferencias.putString("uds2", uds2);
         editorPreferencias.putBoolean("determir", determir);
         editorPreferencias.putBoolean("glargina", glargina);
+
+
 
         editorPreferencias.commit();
 

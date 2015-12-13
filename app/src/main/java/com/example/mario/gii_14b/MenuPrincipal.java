@@ -27,7 +27,7 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        DataBaseHelper helper = new DataBaseHelper(this);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerPeriodo">
+
+        <item>Antes de desayunar</item>
+
+        <item>Después de desayunar</item>
+
+        <item>Antes de almorzar</item>
+
+        <item>Despues de almorzar</item>
+
+        <item>Antes de comer</item>
+
+        <item>Después de comer</item>
+
+        <item>Antes de merendar</item>
+
+        <item>Después de merendar</item>
+
+        <item>Antes de cenar</item>
+
+        <item>Despues de cenar</item>
+
+    </string-array>
+
+    <string-array name="spinnerIncidencias">
+
+        <item>Comer en exceso</item>
+
+        <item>Enfermedad</item>
+
+        <item>Estrés</item>
+
+        <item>Despues de almorzar</item>
+
+        <item>Exceso de ejercicio físico</item>
+
+
+    </string-array>
+</resources>

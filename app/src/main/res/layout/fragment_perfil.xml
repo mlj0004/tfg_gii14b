@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tvmaxmin"
         android:id="@+id/tvmaxmin"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="15dp"
         android:textColor="#ffffff"
         android:layout_below="@+id/et_peso"
         android:layout_alignParentLeft="true"
@@ -163,45 +163,26 @@
         android:id="@+id/tvinsulina"
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:textColor="#ffffff" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cb_determir"
-        android:id="@+id/cb_determir"
-        android:checked="false"
-        android:layout_below="@+id/tvinsulina"
-        android:layout_toLeftOf="@+id/bt_guardar"
-        android:layout_toStartOf="@+id/bt_guardar" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cb_glargina"
-        android:id="@+id/cb_glargina"
-        android:checked="false"
-        android:layout_below="@+id/tvinsulina"
-        android:layout_toRightOf="@+id/tvinsulina"
-        android:layout_toEndOf="@+id/tvinsulina" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_uds"
         android:id="@+id/textView3"
-        android:layout_below="@+id/cb_determir"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:layout_below="@+id/rdgroup" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout2">
+        android:id="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3">
 
         <EditText
             android:layout_width="wrap_content"
@@ -234,8 +215,31 @@
         android:background="#00aacc"
         android:onClick="guardarperfilOnClick"
         android:layout_below="@+id/linearLayout2"
-        android:layout_toLeftOf="@+id/cb_glargina"
-        android:layout_toStartOf="@+id/cb_glargina"
-        android:layout_marginTop="20dp" />
+        android:layout_alignRight="@+id/tvinsulina"
+        android:layout_alignEnd="@+id/tvinsulina"
+        android:layout_marginTop="10dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rdgroup"
+        android:layout_below="@+id/tvinsulina"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Glargina"
+            android:id="@+id/rd_Glargina"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Determir"
+            android:id="@+id/rd_determir"
+            android:layout_gravity="right"
+            android:checked="false" />
+    </RadioGroup>
 
 </RelativeLayout>
