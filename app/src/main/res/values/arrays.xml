@@ -24,18 +24,85 @@
 
     </string-array>
 
-    <string-array name="spinnerIncidencias">
+    <string-array name="spinnerIncidenciasAlto">
+
+        <item>Desconocida</item>
 
         <item>Comer en exceso</item>
 
         <item>Enfermedad</item>
 
-        <item>Estrés</item>
 
-        <item>Despues de almorzar</item>
+
+    </string-array>
+
+    <string-array name="spinnerIncidenciasBajo">
+
+        <item>Desconocida</item>
+
+        <item>Estrés</item>
 
         <item>Exceso de ejercicio físico</item>
 
 
     </string-array>
+
+    <string-array name="spinnerIntensidad">
+        <item>Ninguno</item>
+        <item>Larga (más de 2 horas)</item>
+        <item>Media (de 60 a 90 minutos)</item>
+        <item>Irregular e intermitente</item>
+    </string-array>
+
+
+    <string-array name="spinnerIntensidadLarga">
+        <item>Natación</item>
+        <item>Ciclismo</item>
+        <item>Montañismo</item>
+        <item>Senderismo</item>
+        <item>Paseo</item>
+    </string-array>
+
+    <string-array name="spinnerIntensidaMedia">
+        <item>Fútbol</item>
+        <item>Baloncesto</item>
+        <item>Tenis</item>
+        <item>Balonmano</item>
+        <item>Volleyball</item>
+    </string-array>
+
+    <string-array name="spinnerIntensidadIrregular">
+        <item>Esquí</item>
+    </string-array>
+
+    <string-array name="spinnerTipoAlimento">
+        <item>Arroz</item>
+        <item>Arroz</item>
+        <item>Arroz</item>
+        <item>Fruta</item>
+        <item>Fruta</item>
+        <item>Fruta</item>
+        <item>Legumbre</item>
+        <item>Legumbre</item>
+        <item>Legumbre</item>
+        <item>Lacteo</item>
+        <item>Lacteo</item>
+        <item>Lacteo</item>
+    </string-array>
+
+    <string-array name="spinnerAlimento">
+        <item>Arroz blanco</item>
+        <item>Arroz instantaneo</item>
+        <item>Arroz integral</item>
+        <item>Fresas</item>
+        <item>Platano</item>
+        <item>Melocoton</item>
+        <item>Garbanzos</item>
+        <item>Judias</item>
+        <item>Lentejas</item>
+        <item>Helado</item>
+        <item>Leche entera</item>
+        <item>Yogur</item>
+    </string-array>
+
 </resources>

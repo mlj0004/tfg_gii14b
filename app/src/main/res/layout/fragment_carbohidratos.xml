@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/et_carbo"
         android:layout_below="@+id/tv_valorcarbo"
         android:layout_centerHorizontal="true" />
 
@@ -48,11 +48,25 @@
         android:layout_height="wrap_content"
         android:text="@string/bt_finalizar"
         android:id="@+id/bt_finalizar"
-        android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true"
         android:background="#00c4eb"
         android:textColor="#ffffff"
         android:onClick="finalizarOnClick"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="66dp"
+        android:layout_below="@+id/et_carbo"
+        android:layout_alignRight="@+id/tv_valorcarbo"
+        android:layout_alignEnd="@+id/tv_valorcarbo" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_mascomida"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/bt_finalizar"
+        android:layout_alignLeft="@+id/tv_valorcarbo"
+        android:layout_alignStart="@+id/tv_valorcarbo"
+        android:background="#00c4eb"
+        android:textColor="#ffffff"
+        android:onClick="añadirOtroOnClick"
+        android:nestedScrollingEnabled="true" />
 
 </RelativeLayout>

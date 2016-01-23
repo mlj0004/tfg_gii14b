@@ -1,5 +1,7 @@
 package com.example.mario.gii_14b;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +44,9 @@ public class MenuPrincipal extends AppCompatActivity {
                 if (position == 0) {
                     Intent i = new Intent(getApplicationContext(), RegistroGlucemias.class);
                     startActivity(i);
+                }else if(position == 1){
+                    Intent i = new Intent(getApplicationContext(), Historial.class);
+                    startActivity(i);
                 }
             }
         });
@@ -59,7 +64,8 @@ public class MenuPrincipal extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id== R.id.action_acerca){
-            Toast.makeText(this, "Mario López Jiménez. Universidad de Burgos. 2015", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Aplicacion para el seguimiento de la diabetes y el calculo del bolo corrector. " +
+                    "Universidad de Burgos. 2015", Toast.LENGTH_LONG).show();
         }else if(id==R.id.action_settings){
             //SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
             //SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
@@ -79,5 +85,7 @@ public class MenuPrincipal extends AppCompatActivity {
         startActivity(paso3);
         startActivity(paso2);
         startActivity(paso1);
+
+
     }
 }

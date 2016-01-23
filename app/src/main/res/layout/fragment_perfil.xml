@@ -29,7 +29,8 @@
         android:layout_toRightOf="@+id/tv_nombre"
         android:layout_alignRight="@+id/et_estatura"
         android:layout_alignEnd="@+id/et_estatura"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="20dp"
+        android:hint="@string/h_nombre" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,7 +64,8 @@
         android:layout_toRightOf="@+id/textView2"
         android:layout_alignRight="@+id/et_estatura"
         android:layout_alignEnd="@+id/et_estatura"
-        android:layout_marginLeft="40dp" />
+        android:layout_marginLeft="40dp"
+        android:hint="@string/h_edad" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -87,7 +89,8 @@
         android:layout_toRightOf="@+id/tvestatura"
         android:layout_alignRight="@+id/linearLayout"
         android:layout_alignEnd="@+id/linearLayout"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="20dp"
+        android:hint="@string/hestatura" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -111,7 +114,8 @@
         android:layout_toRightOf="@+id/tvpeso"
         android:layout_alignRight="@+id/et_estatura"
         android:layout_alignEnd="@+id/et_estatura"
-        android:layout_marginLeft="40dp" />
+        android:layout_marginLeft="40dp"
+        android:hint="@string/hpeso" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -143,7 +147,8 @@
             android:id="@+id/et_min"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:hint="@string/h_min" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -153,7 +158,8 @@
             android:id="@+id/et_max"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:hint="@string/h_max" />
     </LinearLayout>
 
     <TextView
@@ -184,6 +190,13 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView3">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_mañana"
+            android:id="@+id/textView4"
+            android:textColor="#ffffff" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -192,7 +205,15 @@
             android:id="@+id/et_uds1"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_noche"
+            android:id="@+id/textView5"
+            android:textColor="#ffffff" />
 
         <EditText
             android:layout_width="wrap_content"

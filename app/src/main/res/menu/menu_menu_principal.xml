@@ -6,6 +6,4 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_acerca" android:title="@string/action_acerca"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_idioma" android:title="@string/action_idioma"
-        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

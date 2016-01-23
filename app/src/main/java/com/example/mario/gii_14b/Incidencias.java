@@ -18,9 +18,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Incidencias extends AppCompatActivity {
-    Spinner listaIncidencias;
+
     String incidencia;
-    String[] tiposIncidencias = {"Tipo1","Tipo2","Tipo3"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +29,22 @@ public class Incidencias extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Bundle bundle =  getIntent().getExtras();
+        int valor=bundle.getInt("valor");
+        int max = bundle.getInt("max");
+        int min = bundle.getInt("min");
 
+        final ArrayAdapter adapter;
         Spinner listaIncidencias = (Spinner) findViewById(R.id.sp_incidencias);
-        final ArrayAdapter adapter = ArrayAdapter.createFromResource( this, R.array.spinnerIncidencias , android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        if(valor>max) {
+            adapter = ArrayAdapter.createFromResource(this, R.array.spinnerIncidenciasAlto, android.R.layout.simple_spinner_item);
+
+        }else{
+            adapter = ArrayAdapter.createFromResource(this, R.array.spinnerIncidenciasBajo, android.R.layout.simple_spinner_item);
+
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         listaIncidencias.setAdapter(adapter);
 
         /*listaIncidencias = (Spinner) findViewById(R.id.sp_incidencias);
@@ -59,23 +70,23 @@ public class Incidencias extends AppCompatActivity {
         EditText observEt = (EditText) findViewById(R.id.et_observaciones);
         String observ = observEt.getText().toString();
 
-        Bundle bundle = getIntent().getExtras();
-        Long id = bundle.getLong("id");
-        Integer idGlucemia =Integer.valueOf(id.intValue());
 
-        String periodo = bundle.getString("periodo");
+            Bundle bundle = getIntent().getExtras();
+            Long id = bundle.getLong("id");
+            Integer idGlucemia = Integer.valueOf(id.intValue());
 
-        DataBaseManager dbmanager = new DataBaseManager(this);
+            String periodo = bundle.getString("periodo");
 
-        long insertar=dbmanager.insertar("incidencias",generarContentValues(periodo,observ,incidencia,idGlucemia));
-        if(insertar==-1){
-            Toast.makeText(this, incidencia+idGlucemia.toString() , Toast.LENGTH_LONG).show();
+            DataBaseManager dbmanager = new DataBaseManager(this);
 
-        }else{
-            Toast.makeText(this, "Incidencia añadida correctamente"+idGlucemia.toString(), Toast.LENGTH_LONG).show();
-        }
+            long insertar = dbmanager.insertar("incidencias", generarContentValues(periodo, observ, incidencia, idGlucemia));
 
-        super.onBackPressed();
+            if(insertar!=-1){
+                Toast.makeText(Incidencias.this, R.string.incidencia_correcta, Toast.LENGTH_SHORT).show();
+            }
+
+            super.onBackPressed();
+
     }
 
     public ContentValues generarContentValues(String periodo, String observaciones, String tipo, Integer id ){

@@ -70,7 +70,6 @@ public class Perfil extends AppCompatActivity {
         RadioButton determirCheck = (RadioButton) findViewById(R.id.rd_determir);
         RadioButton glarginaCheck = (RadioButton) findViewById(R.id.rd_Glargina);
 
-
         String nombre = nombreEt.getText().toString();
         String edad = edadEt.getText().toString();
         String estatura = estaturaEt.getText().toString();
@@ -82,27 +81,36 @@ public class Perfil extends AppCompatActivity {
         Boolean determir = determirCheck.isChecked();
         Boolean glargina = glarginaCheck.isChecked();
 
-        editorPreferencias.putBoolean("primeraEjecucion", true);
-        editorPreferencias.putString("nombre", nombre);
-        editorPreferencias.putString("edad", edad);
-        editorPreferencias.putString("estatura", estatura);
-        editorPreferencias.putString("peso", peso);
-        editorPreferencias.putString("max", max);
-        editorPreferencias.putString("min", min);
-        editorPreferencias.putString("uds1", uds1);
-        editorPreferencias.putString("uds2", uds2);
-        editorPreferencias.putBoolean("determir", determir);
-        editorPreferencias.putBoolean("glargina", glargina);
+        int minVal = Integer.parseInt(min);
+        int maxVal = Integer.parseInt(max);
+
+        if(minVal<80||maxVal>250){
+            Toast.makeText(Perfil.this, R.string.minmax_incorrecto, Toast.LENGTH_SHORT).show();
+        }else if(minVal>maxVal){
+            Toast.makeText(Perfil.this, R.string.minmax_orden, Toast.LENGTH_SHORT).show();
+        }else if(nombre.equals("")||edad.equals("")||estatura.equals("")||peso.equals("")||max.equals("")||min.equals("")||
+                uds1.equals("")||uds2.equals("")){
+            Toast.makeText(Perfil.this, "Rellene todos los campos", Toast.LENGTH_SHORT).show();
+        }else {
+            editorPreferencias.putBoolean("primeraEjecucion", true);
+            editorPreferencias.putString("nombre", nombre);
+            editorPreferencias.putString("edad", edad);
+            editorPreferencias.putString("estatura", estatura);
+            editorPreferencias.putString("peso", peso);
+            editorPreferencias.putString("max", max);
+            editorPreferencias.putString("min", min);
+            editorPreferencias.putString("uds1", uds1);
+            editorPreferencias.putString("uds2", uds2);
+            editorPreferencias.putBoolean("determir", determir);
+            editorPreferencias.putBoolean("glargina", glargina);
 
 
-
-        editorPreferencias.commit();
-
+            editorPreferencias.commit();
 
 
-        //Intent i = new Intent(this, MenuPrincipal.class);
-        //startActivity(i);
-        finish();
-
+            //Intent i = new Intent(this, MenuPrincipal.class);
+            //startActivity(i);
+            finish();
+        }
     }
 }

@@ -55,8 +55,6 @@ public class RegistroGlucemias extends AppCompatActivity {
                 if (position >= 0) {
                     String opcion = adapter.getItem(position).toString();
                     periodo = opcion;
-
-                    Toast.makeText(getApplicationContext(), opcion, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -70,7 +68,8 @@ public class RegistroGlucemias extends AppCompatActivity {
 
     }
     public void guardarGlucemiaOnClick(View view){
-        SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario",MODE_PRIVATE);
+        SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+        SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
         String maxtxt = misPreferencias.getString("max", "");
         String mintxt = misPreferencias.getString("min", "");
         Integer min = Integer.parseInt(mintxt);
@@ -79,31 +78,44 @@ public class RegistroGlucemias extends AppCompatActivity {
 
         EditText valor =  (EditText) findViewById(R.id.et_cantidadglucemia);
         String valortxt = valor.getText().toString();
-        Integer cantidadGlucemia = Integer.parseInt(valortxt);
 
+        if(valortxt.equals("")) {
+            Toast.makeText(RegistroGlucemias.this, "Introduce un valor de glucemia", Toast.LENGTH_SHORT).show();
 
-
-        //Toast.makeText(getApplicationContext(), periodo, Toast.LENGTH_LONG).show();
-        DataBaseManager dbmanager = new DataBaseManager(this);
-        final Cursor cursorGlucemias = dbmanager.consultarGlucemias();
-        int n = cursorGlucemias.getCount();
-
-
-        insertar=dbmanager.insertar("glucemias",generarContentValues(periodo,cantidadGlucemia));
-        if(insertar==-1){
-            Toast.makeText(this, "No se ha realizado la inserccion correctamente", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this, "Insercion realizada correctamente"+Integer.toString(n), Toast.LENGTH_LONG).show();
-        }
+            Integer cantidadGlucemia = Integer.parseInt(valortxt);
+            editorPreferencias.putInt("glucemia", cantidadGlucemia);
+            editorPreferencias.commit();
 
-        if(cantidadGlucemia<min || cantidadGlucemia>max){
-            Intent i = new Intent(this,Incidencias.class);
-            i.putExtra("id", insertar);
-            i.putExtra("periodo",periodo);
-            startActivity(i);
-        }
 
-        super.onBackPressed();
+            //Toast.makeText(getApplicationContext(), periodo, Toast.LENGTH_LONG).show();
+            DataBaseManager dbmanager = new DataBaseManager(this);
+            final Cursor cursorGlucemias = dbmanager.consultarGlucemias();
+            int n = cursorGlucemias.getCount();
+
+
+
+            insertar = dbmanager.insertar("glucemias", generarContentValues(periodo, cantidadGlucemia));
+
+            if(insertar!=-1){
+                Toast.makeText(RegistroGlucemias.this, "Valor de glucemia guardado correctamente", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(RegistroGlucemias.this, "Valor incorrecto, compruebe que ha introducido valores numéricos", Toast.LENGTH_SHORT).show();
+            }
+
+
+            if (cantidadGlucemia < min || cantidadGlucemia > max) {
+                Intent i = new Intent(this, Incidencias.class);
+                i.putExtra("id", insertar);
+                i.putExtra("periodo", periodo);
+                i.putExtra("valor",cantidadGlucemia);
+                i.putExtra("min",min);
+                i.putExtra("max",max);
+                startActivity(i);
+            }
+
+            super.onBackPressed();
+        }
     }
 
     public ContentValues generarContentValues(String periodo, Integer valor){
@@ -117,7 +129,7 @@ public class RegistroGlucemias extends AppCompatActivity {
 
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "dd-MM-yyyy", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }

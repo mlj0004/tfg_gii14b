@@ -11,21 +11,25 @@
         <activity
             android:name=".Perfil"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".MenuPrincipal"
-            android:label="@string/title_activity_menu_principal"
+            android:label="Menú principal"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".RegistroGlucemias"
-            android:label="@string/title_activity_registro_glucemias"
+            android:label="Registro de glucemias"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".ActividadFisica"
-            android:label="@string/title_activity_actividad_fisica"
+            android:label="Actividad física"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
@@ -35,12 +39,14 @@
         </activity>
         <activity
             android:name=".Carbohidratos"
-            android:label="@string/title_activity_carbohidratos"
+            android:label="Recuento de carbohidratos"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".Incidencias"
             android:label="@string/title_activity_incidencias"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".Launcher" >
@@ -49,6 +55,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Historial"
+            android:label="@string/title_activity_historial"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

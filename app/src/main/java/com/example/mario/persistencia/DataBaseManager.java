@@ -71,9 +71,19 @@ public class DataBaseManager {
     public Cursor consultarAlimentos(){
         return db.rawQuery("select * from Alimentos",null);
     }
+
+    public Cursor selectAlimento(String id){
+        return db.rawQuery("select * from Alimentos where Alimento='"+id+"'",null);
+    }
+
+
     String columnas[]=new String[]{"id","fecha","periodo","valor"};
     public Cursor consultarGlucemias(){
         return db.query("Glucemias",columnas,null,null,null,null,null);
+    }
+
+    public Cursor selectGlucemia(String fecha, String periodo){
+        return db.rawQuery("select * from Glucemias where Fecha='"+fecha+"' and Periodo='"+periodo+"'",null);
     }
 
 }

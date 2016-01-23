@@ -1,6 +1,9 @@
 package com.example.mario.gii_14b;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,21 +13,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.mario.calculos.CalculaBolo;
 import com.example.mario.persistencia.DataBaseHelper;
 import com.example.mario.persistencia.DataBaseManager;
 
+import java.util.ArrayList;
+
 public class Carbohidratos extends AppCompatActivity {
     Spinner listaComida;
-    String[] tiposComida = {"Tipo1","Tipo2","Tipo3"};
+
+    String comida;
+
+    int sumatorioRaciones;
 
     public static final String[] tipoAlimento={"Arroz","Arroz","Arroz","Fruta","Fruta","Fruta","Legumbre","Legumbre","Legumbre","Lacteo","Lacteo","Lacteo"};
     public static final String[] alimento={"Arroz blanco","Arroz instantaneo", "Arroz integral", "Fresas","Platano","Melocoton",
                                             "Garbanzos","Judias","Lentejas","Helado","Leche entera","Yogur"};
     public static final int[] raciones={150,150,150,120,120,120,150,150,150,50,250,200};
     public static final int[] cargas={14,16,19,1,12,4,3,3,3,8,3,3};
+
+    ArrayList<String> arrayAlimentos = new ArrayList<String>();
+    ArrayList<Integer> arrayRaciones = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +46,10 @@ public class Carbohidratos extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //rellenarTablaAlimentos();
+        EditText carboEt = (EditText) findViewById(R.id.et_carbo);
+        carboEt.setText("0");
+
+        rellenarTablaAlimentos();
 
         DataBaseManager dbmanager= new DataBaseManager(this);
         final Cursor cursorAlimentos = dbmanager.consultarAlimentos();
@@ -49,19 +65,15 @@ public class Carbohidratos extends AppCompatActivity {
 
         listaComida = (Spinner) findViewById(R.id.sp_comidas);
         //ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,tiposComida);
-        ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listaAlimentos);
-        listaComida.setAdapter(adpTipos);
+        final ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listaAlimentos);
+        final ArrayAdapter adpTipoAlimento = ArrayAdapter.createFromResource(this, R.array.spinnerAlimento, android.R.layout.simple_spinner_item);
+        listaComida.setAdapter(adpTipoAlimento);
 
         listaComida.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==1){
-                    int cantidad=cursorAlimentos.getCount();
-                    Toast.makeText(getApplicationContext(), "Alimentos en tabla "+String.valueOf(cantidad), Toast.LENGTH_LONG).show();
-                }else if(position==2){
-                    int n=alimento.length;
-                    Toast.makeText(getApplicationContext(), String.valueOf(n), Toast.LENGTH_LONG).show();
-                }
+                String opcion = adpTipos.getItem(position).toString();
+                comida = opcion;
             }
 
             @Override
@@ -85,8 +97,77 @@ public class Carbohidratos extends AppCompatActivity {
         }
     }
 
+    public void añadirOtroOnClick(View view) {
+        EditText carboEt = (EditText) findViewById(R.id.et_carbo);
+        String carbo = carboEt.getText().toString();
+        int nracion = Integer.parseInt(carbo);
+        carboEt.setText("0");
+
+        DataBaseManager dbmanager = new DataBaseManager(this);
+        final Cursor cursorGlucemias = dbmanager.selectAlimento(comida);
+        if (cursorGlucemias.moveToFirst()) {
+            String n = cursorGlucemias.getString(3);
+            sumatorioRaciones+=Integer.parseInt(n)*nracion;
+
+        }
+
+
+    }
+
     public void finalizarOnClick(View view){
-        super.onBackPressed();
+
+        EditText carboEt = (EditText) findViewById(R.id.et_carbo);
+        String carbo = carboEt.getText().toString();
+        int nracion = Integer.parseInt(carbo);
+
+        DataBaseManager dbmanager = new DataBaseManager(this);
+        final Cursor cursorGlucemias = dbmanager.selectAlimento(comida);
+
+        if (cursorGlucemias.moveToFirst()) {
+            String n = cursorGlucemias.getString(3);
+            sumatorioRaciones+=Integer.parseInt(n)*nracion;
+        }
+
+
+            SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+
+            String uds1txt = misPreferencias.getString("uds1", "");
+            String uds2txt = misPreferencias.getString("uds2", "");
+            String tipoEjer = misPreferencias.getString("tipoEjer", "");
+            int uds1 = Integer.parseInt(uds1txt);
+            int uds2 = Integer.parseInt(uds2txt);
+            int insulinaBasal = uds1 + uds2;
+            int ultimaMedicion = misPreferencias.getInt("glucemia", 0);
+
+            CalculaBolo cb = new CalculaBolo(ultimaMedicion,insulinaBasal,sumatorioRaciones,tipoEjer);
+
+            double boloR=cb.calculoBoloCorrector();
+
+            String comentarioFinal;
+            if(boloR>=0) {
+                comentarioFinal = getString(R.string.resultado_bolo) + Double.toString(boloR);
+            }else{
+
+                comentarioFinal = getString(R.string.ingerir_carbohidratos);
+                }
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(comentarioFinal)
+                    .setTitle(getString(R.string.bolo))
+                    .setCancelable(false)
+                    .setNeutralButton(getString(R.string.aceptar),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    finish();
+                                }
+                            });
+            AlertDialog alert = builder.create();
+            alert.show();
+
+
+
     }
 
 }
