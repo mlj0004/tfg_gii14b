@@ -1,5 +1,6 @@
 package com.example.mario.gii_14b;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 public class ActividadFisica extends AppCompatActivity {
     Spinner listaTipos, listaIntensidad;
+    final private int REQUEST_EXIT=0;
+    final private int RESULT_CODE=1;
 
     private String tipo;
 
@@ -24,6 +27,7 @@ public class ActividadFisica extends AppCompatActivity {
         setContentView(R.layout.activity_actividad_fisica);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listaTipos = (Spinner) findViewById(R.id.sp_tipoejer);
         final ArrayAdapter adpTipos = ArrayAdapter.createFromResource(this,R.array.spinnerIntensidad, android.R.layout.simple_spinner_item);
@@ -63,10 +67,25 @@ public class ActividadFisica extends AppCompatActivity {
     public void siguienteOnClick(View view){
         SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
         SharedPreferences.Editor editor = misPreferencias.edit();
-        editor.putString("tipoEjer",tipo);
+        editor.putString("tipoEjer", tipo);
         editor.commit();
 
-        super.onBackPressed();
+        Intent i = new Intent(this, Carbohidratos.class);
+        startActivityForResult(i, REQUEST_EXIT);
+
+        //super.onBackPressed();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == REQUEST_EXIT)
+        {
+            setResult(RESULT_CODE);
+            finish();
+
+        }
     }
 
 }

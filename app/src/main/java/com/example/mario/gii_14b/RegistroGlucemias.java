@@ -29,6 +29,10 @@ public class RegistroGlucemias extends AppCompatActivity {
                             "Después de comer", "Antes de merendar", "Después de merendar",
                             "Antes de cenar", "Después de cenar"};*/
     private String periodo;
+    final private int REQUEST_EXIT = 0;
+    final private int REQUEST_EXIT_BOLO = 1;
+    private boolean bolo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,14 @@ public class RegistroGlucemias extends AppCompatActivity {
         setContentView(R.layout.activity_registro_glucemias);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+        SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
+        bolo = misPreferencias.getBoolean("boloCorrector",false);
+        editorPreferencias.putBoolean("boloCorrector",false);
+        editorPreferencias.commit();
+
 
         Spinner listaPeriodos = (Spinner) findViewById(R.id.sp_glucemias);
         final ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.spinnerPeriodo, android.R.layout.simple_spinner_item);
@@ -103,6 +115,11 @@ public class RegistroGlucemias extends AppCompatActivity {
                 Toast.makeText(RegistroGlucemias.this, "Valor incorrecto, compruebe que ha introducido valores numéricos", Toast.LENGTH_SHORT).show();
             }
 
+            if(bolo==true){
+                Intent i= new Intent(this, ActividadFisica.class);
+                startActivityForResult(i, REQUEST_EXIT_BOLO);
+
+            }
 
             if (cantidadGlucemia < min || cantidadGlucemia > max) {
                 Intent i = new Intent(this, Incidencias.class);
@@ -110,11 +127,30 @@ public class RegistroGlucemias extends AppCompatActivity {
                 i.putExtra("periodo", periodo);
                 i.putExtra("valor",cantidadGlucemia);
                 i.putExtra("min",min);
-                i.putExtra("max",max);
-                startActivity(i);
+                i.putExtra("max", max);
+                //startActivity(i);
+                startActivityForResult(i,REQUEST_EXIT);
+            }else if(bolo==false){
+                super.onBackPressed();
             }
 
-            super.onBackPressed();
+
+            //super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(bolo==true){
+            if(requestCode==REQUEST_EXIT_BOLO){
+                finish();
+            }
+        }else if(requestCode == REQUEST_EXIT)
+        {
+            finish();
         }
     }
 

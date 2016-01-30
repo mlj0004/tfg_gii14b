@@ -19,7 +19,9 @@ import java.util.Locale;
 
 public class Incidencias extends AppCompatActivity {
 
+    final private int RESULT_EXIT=0;
     String incidencia;
+
 
 
     @Override
@@ -28,6 +30,7 @@ public class Incidencias extends AppCompatActivity {
         setContentView(R.layout.activity_incidencias);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle =  getIntent().getExtras();
         int valor=bundle.getInt("valor");
@@ -84,7 +87,7 @@ public class Incidencias extends AppCompatActivity {
             if(insertar!=-1){
                 Toast.makeText(Incidencias.this, R.string.incidencia_correcta, Toast.LENGTH_SHORT).show();
             }
-
+            setResult(RESULT_EXIT);
             super.onBackPressed();
 
     }

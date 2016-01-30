@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class Carbohidratos extends AppCompatActivity {
     Spinner listaComida;
+    private final int RESULT_EXIT=0;
 
     String comida;
 
@@ -45,6 +46,7 @@ public class Carbohidratos extends AppCompatActivity {
         setContentView(R.layout.activity_carbohidratos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         EditText carboEt = (EditText) findViewById(R.id.et_carbo);
         carboEt.setText("0");
@@ -160,6 +162,7 @@ public class Carbohidratos extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
+                                    setResult(RESULT_EXIT);
                                     finish();
                                 }
                             });

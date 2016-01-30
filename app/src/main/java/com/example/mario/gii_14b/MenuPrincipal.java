@@ -42,6 +42,10 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
+                    SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+                    SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
+                    editorPreferencias.putBoolean("boloCorrector",false);
+                    editorPreferencias.commit();
                     Intent i = new Intent(getApplicationContext(), RegistroGlucemias.class);
                     startActivity(i);
                 }else if(position == 1){
@@ -78,12 +82,17 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void calcularBoloOnClick(View view){
-        Intent paso3 = new Intent(this,Carbohidratos.class);
-        Intent paso1 = new Intent(this, RegistroGlucemias.class);
-        Intent paso2 = new Intent(this, ActividadFisica.class);
+        SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+        SharedPreferences.Editor editorPreferencias = misPreferencias.edit();
+        editorPreferencias.putBoolean("boloCorrector",true);
+        editorPreferencias.commit();
 
-        startActivity(paso3);
-        startActivity(paso2);
+        //Intent paso3 = new Intent(this,Carbohidratos.class);
+        Intent paso1 = new Intent(this, RegistroGlucemias.class);
+        // paso2 = new Intent(this, ActividadFisica.class);
+
+        //startActivity(paso3);
+        //startActivity(paso2);
         startActivity(paso1);
 
 

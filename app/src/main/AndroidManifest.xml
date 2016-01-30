@@ -24,13 +24,21 @@
             android:name=".RegistroGlucemias"
             android:label="Registro de glucemias"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.mario.gii_14b.MenuPrincipal" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mario.gii_14b.MenuPrincipal" />
         </activity>
         <activity
             android:name=".ActividadFisica"
             android:label="Actividad física"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.mario.gii_14b.RegistroGlucemias" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mario.gii_14b.RegistroGlucemias" />
         </activity>
         <activity
             android:name=".MainActivity"
@@ -41,13 +49,21 @@
             android:name=".Carbohidratos"
             android:label="Recuento de carbohidratos"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.mario.gii_14b.ActividadFisica" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mario.gii_14b.ActividadFisica" />
         </activity>
         <activity
             android:name=".Incidencias"
             android:label="@string/title_activity_incidencias"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.mario.gii_14b.RegistroGlucemias" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mario.gii_14b.RegistroGlucemias" />
         </activity>
         <activity android:name=".Launcher" >
             <intent-filter>
