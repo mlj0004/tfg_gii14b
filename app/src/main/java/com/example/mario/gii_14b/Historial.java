@@ -1,5 +1,6 @@
 package com.example.mario.gii_14b;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 
 import java.text.ParseException;
@@ -32,7 +35,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Historial extends AppCompatActivity {
+public class Historial extends AppCompatActivity implements OnChartValueSelectedListener {
+
+    ArrayList<Entry> entriesDesayuno, entriesComida, entriesCena;
+    ArrayList<String> labels;
+    int valMax, valMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,9 @@ public class Historial extends AppCompatActivity {
         setContentView(R.layout.activity_historial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        SharedPreferences misPreferencias = getSharedPreferences("PreferenciasUsuario", MODE_PRIVATE);
+        valMax=Integer.parseInt(misPreferencias.getString("max",""));
+        valMin=Integer.parseInt(misPreferencias.getString("min",""));
 
         inicializeChart();
 
@@ -49,12 +58,12 @@ public class Historial extends AppCompatActivity {
 
     public void inicializeChart(){
         //Generamos los entries con los valores de la última semana para cada periodo
-        ArrayList<Entry> entriesDesayuno = new ArrayList<Entry>(generarCursores(generaFechas(),getString(R.string.leyenda_desayuno)));
-        ArrayList<Entry> entriesComida = new ArrayList<Entry>(generarCursores(generaFechas(),getString(R.string.leyenda_comida)));
-        ArrayList<Entry> entriesCena = new ArrayList<Entry>(generarCursores(generaFechas(), getString(R.string.leyenda_cena)));
+        entriesDesayuno = new ArrayList<Entry>(generarCursores(generaFechas(),getString(R.string.leyenda_desayuno)));
+        entriesComida = new ArrayList<Entry>(generarCursores(generaFechas(),getString(R.string.leyenda_comida)));
+        entriesCena = new ArrayList<Entry>(generarCursores(generaFechas(), getString(R.string.leyenda_cena)));
 
         //Array que contiene las etiquetas para el eje X
-        ArrayList<String> labels = new ArrayList<String>(generaFechas());
+        labels = new ArrayList<String>(generaFechas());
 
         //Inicializamos los set de datos para cada periodo, incluyendo su leyenda
         LineData datasetline = new LineData(labels);
@@ -68,6 +77,7 @@ public class Historial extends AppCompatActivity {
         datasetline.addDataSet(setDesayuno);
         datasetline.addDataSet(setComida);
         datasetline.addDataSet(setCena);
+
 
 
         RelativeLayout rl = new RelativeLayout(getApplicationContext());
@@ -89,6 +99,7 @@ public class Historial extends AppCompatActivity {
 
         //enable touch gestures
         mChart.setTouchEnabled(true);
+        mChart.setOnChartValueSelectedListener(this);
 
         //we want also enable scaling and dragging
         mChart.setDragEnabled(true);
@@ -124,8 +135,8 @@ public class Historial extends AppCompatActivity {
         y1.setDrawGridLines(true);
 
         y1.setDrawLimitLinesBehindData(true);
-        LimitLine min = new LimitLine(85f,"min");
-        LimitLine max = new LimitLine(160f,"max");
+        LimitLine min = new LimitLine(valMin,"min");
+        LimitLine max = new LimitLine(valMax,"max");
         y1.addLimitLine(min);
         y1.addLimitLine(max);
 
@@ -144,7 +155,7 @@ public class Historial extends AppCompatActivity {
         DataBaseManager dbmanager = new DataBaseManager(this);
         for(int i=0;i<7;i++){
             Cursor cursorDesayuno = dbmanager.selectGlucemia(fechas.get(i),periodo);
-            if(cursorDesayuno.moveToFirst()){
+            if(cursorDesayuno.moveToLast()){
                 entries.add(new BarEntry(Integer.parseInt(cursorDesayuno.getString(3)),i));
             }
         }
@@ -195,6 +206,50 @@ public class Historial extends AppCompatActivity {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public void onValueSelected(Entry entry, int i, Highlight highlight) {
+        int posicion = entry.getXIndex();
+        int val = (int)entry.getVal();
+        String fecha = labels.get(posicion);
+        DataBaseManager dbmanager = new DataBaseManager(this);
+        if(val<valMin||val>valMax){
+            Cursor cursor = dbmanager.selectGlucemiaValor(fecha,val);
+            if(cursor.moveToLast()){
+                String id = cursor.getString(0);
+                Cursor cursorIncidencia = dbmanager.selectIncidencia(Integer.parseInt(id));
+                if(cursorIncidencia.moveToFirst()) {
+                    String incidencia = cursorIncidencia.getString(1);
+                    String observaciones = cursorIncidencia.getString(2);
+                    if (!observaciones.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Incidencia: " + incidencia + "."
+                                + "Observaciones: " + observaciones, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Incidencia: " + incidencia + ". No se registraron observaciones para esta incidencia"
+                                , Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),R.string.sinIncidencia,Toast.LENGTH_LONG).show();
+        }
+
+
+
+        /*ArrayList<Entry> entriesSelected;
+        if(i==0){
+            entriesSelected=new ArrayList<>(entriesDesayuno);
+        }*/
+
+
+    }
+
+    @Override
+    public void onNothingSelected() {
+
     }
 }
 

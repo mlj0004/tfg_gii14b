@@ -75,7 +75,35 @@
         <item>Esquí</item>
     </string-array>
 
-    <string-array name="spinnerTipoAlimento">
+    <string-array name="spinerTipoAlimento">
+        <item>Arroz</item>
+        <item>Fruta</item>
+        <item>Legumbre</item>
+        <item>Lacteo</item>
+        </string-array>
+
+    <string-array name="spinerArroz">
+        <item>Arroz blanco</item>
+        <item>Arroz instantaneo</item>
+        <item>Arroz integral</item>
+    </string-array>
+    <string-array name="spinerFruta">
+        <item>Fresas</item>
+        <item>Platano</item>
+        <item>Melocoton</item>
+    </string-array>
+    <string-array name="spinerLegumbre">
+        <item>Garbanzos</item>
+        <item>Judias</item>
+        <item>Lentejas</item>
+    </string-array>
+    <string-array name="spinerLacteo">
+        <item>Helado</item>
+        <item>Leche entera</item>
+        <item>Yogur</item>
+    </string-array>
+
+    <string-array name="arrayTipoAlimento">
         <item>Arroz</item>
         <item>Arroz</item>
         <item>Arroz</item>
@@ -90,7 +118,7 @@
         <item>Lacteo</item>
     </string-array>
 
-    <string-array name="spinnerAlimento">
+    <string-array name="arrayAlimentos">
         <item>Arroz blanco</item>
         <item>Arroz instantaneo</item>
         <item>Arroz integral</item>

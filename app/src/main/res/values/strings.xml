@@ -46,7 +46,7 @@
     <string name="bt_siguiente">Siguiente</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_carbohidratos">Carbohidratos</string>
-    <string name="tv_carbohidratos">Selecciona el tipo de comida de la ingesta</string>
+    <string name="tv_carbohidratos">Selecciona el alimento de la ingesta</string>
     <string name="tv_valorcarbo">Introuce el número de raciones del alimento</string>
     <string name="bt_finalizar">Finalizar</string>
     <string name="title_activity_incidencias">Incidencias</string>
@@ -65,6 +65,7 @@
     <string name="leyenda_comida">Después de comer</string>
     <string name="leyenda_cena">Antes de cenar</string>
     <string name="leyenda_chart">Valores glucemia última semana</string>
+    <string name="sinIncidencia">El valor de glucemia se encuentra dentro de los márgenes aceptables. No hay incidencias.</string>
 
 
 </resources>

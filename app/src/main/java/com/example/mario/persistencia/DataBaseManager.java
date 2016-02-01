@@ -86,4 +86,12 @@ public class DataBaseManager {
         return db.rawQuery("select * from Glucemias where Fecha='"+fecha+"' and Periodo='"+periodo+"'",null);
     }
 
+    public Cursor selectGlucemiaValor(String fecha, int valor){
+        return db.rawQuery("select * from Glucemias where Fecha='"+fecha+"' and Valor='"+valor+"'",null);
+    }
+
+    public Cursor selectIncidencia(int idGlucemia){
+        return db.rawQuery("select * from Incidencias where Glucemia='"+idGlucemia+"'",null);
+    }
+
 }

@@ -82,7 +82,7 @@ public class Incidencias extends AppCompatActivity {
 
             DataBaseManager dbmanager = new DataBaseManager(this);
 
-            long insertar = dbmanager.insertar("incidencias", generarContentValues(periodo, observ, incidencia, idGlucemia));
+            long insertar = dbmanager.insertar("incidencias", generarContentValues(incidencia, observ, periodo, idGlucemia));
 
             if(insertar!=-1){
                 Toast.makeText(Incidencias.this, R.string.incidencia_correcta, Toast.LENGTH_SHORT).show();

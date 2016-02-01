@@ -24,18 +24,21 @@ import com.example.mario.persistencia.DataBaseManager;
 import java.util.ArrayList;
 
 public class Carbohidratos extends AppCompatActivity {
-    Spinner listaComida;
+    Spinner listaComida, listaTipo;
     private final int RESULT_EXIT=0;
 
     String comida;
 
     int sumatorioRaciones;
 
-    public static final String[] tipoAlimento={"Arroz","Arroz","Arroz","Fruta","Fruta","Fruta","Legumbre","Legumbre","Legumbre","Lacteo","Lacteo","Lacteo"};
-    public static final String[] alimento={"Arroz blanco","Arroz instantaneo", "Arroz integral", "Fresas","Platano","Melocoton",
-                                            "Garbanzos","Judias","Lentejas","Helado","Leche entera","Yogur"};
+    //public static final String[] tipoAlimento={"Arroz","Arroz","Arroz","Fruta","Fruta","Fruta","Legumbre","Legumbre","Legumbre","Lacteo","Lacteo","Lacteo"};
+    private String[] tipoAlimento;
+    private String[] alimento;
+    //public static final String[] alimento={"Arroz blanco","Arroz instantaneo", "Arroz integral", "Fresas","Platano","Melocoton",
+      //                                      "Garbanzos","Judias","Lentejas","Helado","Leche entera","Yogur"};
     public static final int[] raciones={150,150,150,120,120,120,150,150,150,50,250,200};
     public static final int[] cargas={14,16,19,1,12,4,3,3,3,8,3,3};
+
 
     ArrayList<String> arrayAlimentos = new ArrayList<String>();
     ArrayList<Integer> arrayRaciones = new ArrayList<Integer>();
@@ -65,17 +68,49 @@ public class Carbohidratos extends AppCompatActivity {
             }while(cursorAlimentos.moveToNext());
         }
 
+
+        final ArrayAdapter adpTipoAlimento = ArrayAdapter.createFromResource(this,R.array.spinerTipoAlimento,android.R.layout.simple_spinner_item);
+        final ArrayAdapter adpArroz = ArrayAdapter.createFromResource(this, R.array.spinerArroz, android.R.layout.simple_spinner_item);
+        final ArrayAdapter adpFruta = ArrayAdapter.createFromResource(this, R.array.spinerFruta, android.R.layout.simple_spinner_item);
+        final ArrayAdapter adpLegumbre = ArrayAdapter.createFromResource(this,R.array.spinerLegumbre,android.R.layout.simple_spinner_item);
+        final ArrayAdapter adpLacteo = ArrayAdapter.createFromResource(this,R.array.spinerLacteo,android.R.layout.simple_spinner_item);
+
         listaComida = (Spinner) findViewById(R.id.sp_comidas);
         //ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,tiposComida);
-        final ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listaAlimentos);
-        final ArrayAdapter adpTipoAlimento = ArrayAdapter.createFromResource(this, R.array.spinnerAlimento, android.R.layout.simple_spinner_item);
+        //final ArrayAdapter<String> adpTipos = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listaAlimentos);
+        //final ArrayAdapter adpTipoAlimento = ArrayAdapter.createFromResource(this, R.array.spinnerAlimento, android.R.layout.simple_spinner_item);
+        //listaComida.setAdapter(adpTipoAlimento);
         listaComida.setAdapter(adpTipoAlimento);
+
+        listaTipo =(Spinner) findViewById(R.id.spiner_tipo);
 
         listaComida.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String opcion = adpTipos.getItem(position).toString();
-                comida = opcion;
+                //String opcion = adpTipos.getItem(position).toString();
+                //comida = opcion;
+                if(position==0){
+                    listaTipo.setAdapter(adpArroz);
+                }else if(position==1){
+                    listaTipo.setAdapter(adpFruta);
+                }else if (position==2){
+                    listaTipo.setAdapter(adpLegumbre);
+                }else if (position==3){
+                    listaTipo.setAdapter(adpLacteo);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        listaTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                comida = listaTipo.getAdapter().getItem(position).toString();
             }
 
             @Override
@@ -88,6 +123,9 @@ public class Carbohidratos extends AppCompatActivity {
     }
 
     public void rellenarTablaAlimentos(){
+        tipoAlimento = getResources().getStringArray(R.array.arrayTipoAlimento);
+        alimento = getResources().getStringArray(R.array.arrayAlimentos);
+
         DataBaseManager dbmanager= new DataBaseManager(this);
         for(int i=0;i<alimento.length;++i){
             ContentValues values = new ContentValues();
