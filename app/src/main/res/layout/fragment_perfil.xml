@@ -1,4 +1,6 @@
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="fill_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="fill_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -238,7 +240,8 @@
         android:layout_below="@+id/linearLayout2"
         android:layout_alignRight="@+id/tvinsulina"
         android:layout_alignEnd="@+id/tvinsulina"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -264,3 +267,4 @@
     </RadioGroup>
 
 </RelativeLayout>
+</ScrollView>

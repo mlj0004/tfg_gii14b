@@ -1,3 +1,6 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -5,13 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:showIn="@layout/activity_actividad_fisica"
-    tools:context="com.example.mario.gii_14b.ActividadFisicaFragment">
+    tools:context="com.tfg_gii14b.mario.interfaz.ActividadFisicaFragment">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_tipoejer"
+        android:text="@string/tv_intensidad"
         android:id="@+id/tv_tipoejer"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -31,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_intensidad"
+        android:text="@string/tv_tipoejer"
         android:id="@+id/tv_intensidad"
         android:layout_below="@+id/sp_tipoejer"
         android:layout_alignParentLeft="true"
@@ -54,9 +57,12 @@
         android:layout_height="wrap_content"
         android:text="@string/bt_siguiente"
         android:id="@+id/bt_siguiente"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:background="#00c4eb"
         android:textColor="#ffffff"
-        android:onClick="siguienteOnClick" />
+        android:onClick="siguienteOnClick"
+        android:layout_below="@+id/sp_intensidad"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
+</ScrollView>
